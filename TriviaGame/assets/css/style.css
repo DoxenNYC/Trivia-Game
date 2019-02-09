@@ -1,0 +1,46 @@
+.btn {
+    color: white;
+    border: 2px solid orange;
+    text-align: center;
+    border-radius: 10px;
+    background-color: blue;
+    font-size: 30pt;
+}
+.btn:hover {
+    color: orange;
+}
+.answer:hover {
+    background: blue;
+}
+
+body {
+    background: url('http://images.performgroup.com/di/library/sporting_news/57/d7/knicks-70th-logos_1x7cuxl54pwfs1ng84nphktepo.jpg?t=804278992&w=960&quality=70');
+
+    text-align: center;
+    font-family: 'Black Ops One', cursive;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: white;
+    padding: 70px 0;
+    
+}
+
+img {
+    width: 550px;
+    height: 350px;
+}
+
+#title {
+    font-family: 'Black Ops One', cursive;
+    color: white;
+    font-size: 100px;
+}
+.container {
+    background-color: rgba(255, 166, 0, 0.582);
+    padding: 70px 0;
+    border: 10px;
+    border-color: black;
+}
