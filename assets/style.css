@@ -32,21 +32,21 @@ h1 {
   color: white ;
 }
 
-#start {
+#play {
     background-color: rgb(0, 0, 141);
     border: rgb(247, 132, 0) 2px solid;
     font-size: 30pt;
     font-family: 'Black Ops One', cursive; 
 }
 
-#start:hover {
+#play:hover {
     background-color: rgb(247, 132, 0);
     border: rgb(0, 0, 141) 2px solid;
     font-size: 30pt;
     font-family: 'Black Ops One', cursive;
 }
 
-#result {
+#outcome {
     color: white;
     font-size: 35px;
     font-family: 'Black Ops One', cursive;

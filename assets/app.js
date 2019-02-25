@@ -1,10 +1,4 @@
-function triviaQuestion(question, options, answer){
-    this.question = question;
-    this.options = options;
-    this.answer = answer;
-  }
-    
-  var Questions = [
+var Questions = [
     new triviaQuestion("How many championships have the Knicks won?",["3", "9", "2", "5"],2),
     
     new triviaQuestion("What arena do the Knicks play in?",["Madison Square Garden", "Barclays Center", "TD Garden", "Staples Center"],0),
@@ -26,7 +20,12 @@ function triviaQuestion(question, options, answer){
     new triviaQuestion("Who is the owner of the New York Knicks?",["Robert Kraft", "Magic Johnson", "James Dolan", "Tim Hardaway"],2),
 
   ];
-  
+  function triviaQuestion(question, options, answer){
+    this.question = question;
+    this.options = options;
+    this.answer = answer;
+  }
+
   var timeLeft = 120;
     var elem = document.getElementById('timer');
     
@@ -41,12 +40,12 @@ function triviaQuestion(question, options, answer){
         timeLeft--;
       }
     }
-  var currentquestion = 0;
-  var correctAnswers = 0;
+  var nowQuestion = 0;
+  var rightAnswers = 0;
   
-  function setupOptions() {
-    $('#question').html(parseInt(currentquestion) + 1 + ". " + Questions[currentquestion].question);
-    var choices = Questions[currentquestion].options;
+  function layout() {
+    $('#question').html(parseInt(nowQuestion) + 1 + ". " + Questions[nowQuestion].question);
+    var choices = Questions[nowQuestion].options;
     var formHtml = '';
     for (var i = 0; i < choices.length; i++) {
       formHtml += '<div><input type="radio" name="option" value="' + i + '" class="options"><label for="option' + i + '">' + choices[i] + '</label></div><br/>';
@@ -55,9 +54,9 @@ function triviaQuestion(question, options, answer){
     $(".options:eq(0)").prop('checked', true);
   }
   
-  function checkAns() {
-    if ($("input[name=option]:checked").val() == Questions[currentquestion].answer) {
-      correctAnswers++;
+  function questAns() {
+    if ($("input[name=option]:checked").val() == Questions[nowQuestion].answer) {
+      rightAnswers++;
     }
   }    
 
@@ -65,43 +64,44 @@ function triviaQuestion(question, options, answer){
   $(document).ready(function(){
       
     var $jumbotron = $(".jumbotron");
-    var $start = $("#start");
-    var $progressbar = $("#progressbar");
+    var $play = $("#play");
+    var $outcome = $("#outcome");
     var $next = $("#next");
-    var $result = $("#result");
+    var $barFill = $("#barFill");
+    
     
       $jumbotron.hide();
-      $start.click(function() {
+      $play.click(function() {
           $jumbotron.fadeIn();
           $(this).hide();
         });
   
       $(function() {
-          $progressbar.progressbar({
+          $barFill.barFill({
               max: Questions.length-1,			
               value: 0
           });
       });
   
-      setupOptions();
+      layout();
   
       $next.click(function(){
               event.preventDefault();
-              checkAns();
-              currentquestion++;
+              questAns();
+              nowQuestion++;
               $(function() {
-                  $progressbar.progressbar({
-                        value: currentquestion
+                  $barFill.barFill({
+                        value: nowQuestion
                   });
                 });
-              if(currentquestion < Questions.length){
-                  setupOptions();
-                  if(currentquestion == Questions.length-1){
-                      $next.html("Submit");
+              if(nowQuestion < Questions.length){
+                  layout();
+                  if(nowQuestion == Questions.length-1){
+                      $next.html("DONE");
                       $next.click(function(){
                           $jumbotron.hide();
-                          $result.html("You correctly answered " + correctAnswers + " out of " + currentquestion + " questions! ").hide();
-                          $result.fadeIn(1500);
+                          $outcome.html("You correctly answered " + rightAnswers + " out of " + nowQuestion + " questions! ").hide();
+                          $outcome.fadeIn(1500);
                       });
   
                   }
